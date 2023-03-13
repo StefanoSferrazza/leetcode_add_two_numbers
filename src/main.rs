@@ -1,3 +1,5 @@
+use std::borrow::Borrow;
+
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -68,5 +70,20 @@ impl Solution {
                 (None, 0)
             }
         }
+    }
+}
+
+fn main() {
+    let res = Solution::add_two_numbers(
+        Some(Box::new(ListNode::new(5))),
+        Some(Box::new(ListNode::new(5))),
+    );
+    print_res(res);
+}
+
+fn print_res(res: Option<Box<ListNode>>) {
+    if let Some(list_node) = res {
+        println!("{}", list_node.val);
+        print_res(list_node.next);
     }
 }
